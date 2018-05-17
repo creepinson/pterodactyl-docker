@@ -1,3 +1,5 @@
+git clone https://github.com/pterodactyl/panel
+
 cp panel/.env.example panel/.env  
 docker-compose run --rm composer install --no-dev  
 docker-compose run --rm php php artisan key:generate --force  
