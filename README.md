@@ -1,3 +1,5 @@
+You'll need to edit the port in the docker-compose.yml file to the exposed port you want used by the Panel  
+
 git clone https://github.com/pterodactyl/panel
 
 cp panel/.env.example panel/.env  
