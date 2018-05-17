@@ -1,0 +1,63 @@
+version: '2'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=panel
+      - MYSQL_USER=pterodactyl
+      - MYSQL_PASSWORD=Password123
+
+  web:
+    image: nginx:alpine
+    restart: always
+    depends_on:
+      - php
+    ports:
+      - 8888:80
+#      - 4433:443
+    volumes:
+      - ./panel:/home/panel
+      - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
+
+  php:
+    build: ./phpfpm
+    restart: always
+    volumes:
+      - ./panel:/home/panel
+    depends_on:
+      - db
+    working_dir: /home/panel
+    environment:
+      - APP_ENV=local
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_DATABASE=panel
+      - DB_USERNAME=pterodactyl
+      - DB_PASSWORD=Password123
+
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./redis:/data
+    depends_on:
+      - db
+
+  composer:
+    build: ./composer
+    restart: "no"
+    volumes:
+      - ./panel:/home/panel
+    working_dir: /home/panel
+    environment:
+      - APP_ENV=local
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_DATABASE=panel
+      - DB_USERNAME=pterodactyl
+      - DB_PASSWORD=Password123
