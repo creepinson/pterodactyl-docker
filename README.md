@@ -9,6 +9,7 @@ Optional: edit docker-compose.yml with the ports you want to use for the panel.
 Then, run the following to setup the panel:
 
 ```
+git clone https://github.com/pterodactyl/panel
 cp panel/.env.example panel/.env
 docker-compose run --rm composer install --no-dev
 docker-compose run --rm php php artisan key:generate --force
