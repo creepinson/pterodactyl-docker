@@ -1,4 +1,3 @@
 git fetch
-git pull
-git submodule update --recursive
+git pull --recurse-submodules
 docker-compose up -d

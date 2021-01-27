@@ -5,6 +5,7 @@
 ```
 https://github.com/creepinson/pterodactyl-docker ptero
 cd ptero
+git clone https://github.com/pterodactyl/panel data/panel
 bash ./update.sh
 ```
 

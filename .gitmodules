@@ -1,3 +1,0 @@
-[submodule "panel"]
-        path = data/panel
-        url = https://github.com/pterodactyl/panel
