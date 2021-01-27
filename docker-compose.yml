@@ -54,10 +54,3 @@ services:
     volumes:
       - ./panel:/home/panel
     working_dir: /home/panel
-    environment:
-      - APP_ENV=local
-      - DB_CONNECTION=mysql
-      - DB_HOST=db
-      - DB_DATABASE=panel
-      - DB_USERNAME=pterodactyl
-      - DB_PASSWORD=Password123
