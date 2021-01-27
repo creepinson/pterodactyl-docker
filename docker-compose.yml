@@ -1,11 +1,11 @@
-version: '2'
+version: "2"
 
 services:
   db:
     image: mariadb
     restart: always
     volumes:
-      - ./database:/var/lib/mysql
+      - ./data/database:/var/lib/mysql
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=panel
@@ -19,9 +19,9 @@ services:
       - php
     ports:
       - 8888:80
-#      - 4433:443
+    #      - 4433:443
     volumes:
-      - ./panel:/home/panel
+      - ./data/panel:/home/panel
       - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
 
   php:
@@ -44,7 +44,7 @@ services:
     image: redis
     restart: always
     volumes:
-      - ./redis:/data
+      - ./data/redis:/data
     depends_on:
       - db
 
@@ -52,5 +52,5 @@ services:
     build: ./composer
     restart: "no"
     volumes:
-      - ./panel:/home/panel
+      - ./data/panel:/home/panel
     working_dir: /home/panel
