@@ -7,7 +7,7 @@ read panel_url
 echo Initializing panel at "$panel_url"
 
 # Run environment setup
-docker-compose run --rm php php artisan key:generate --force
+docker-compose run --rm php php artisan key:generate --force --no-interaction
 docker-compose run --rm php php artisan p:environment:setup --new-salt --author="admin@example.com" --url="$panel_url" --timezone="America/Los_Angeles"
 docker-compose run --rm php php artisan migrate
 docker-compose run --rm php php artisan db:seed
