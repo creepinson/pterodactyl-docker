@@ -28,7 +28,7 @@ services:
     build: ./phpfpm
     restart: always
     volumes:
-      - ./panel:/home/panel
+      - ./data/panel:/home/panel
     depends_on:
       - db
     working_dir: /home/panel
